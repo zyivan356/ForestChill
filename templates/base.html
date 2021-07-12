@@ -1,0 +1,364 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!--Custom css-->
+    <!--<link rel="stylesheet" type="text/css" href={% static "style.css" %}>-->
+  <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- semantic UI -->
+    <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap" rel="stylesheet">
+
+      <title>SocialCloud - {% block title %}{% endblock title %}</title>
+  <style>
+         body {
+    background: #F8F8F8 !important;
+}
+
+.nav {
+    border-radius: 0px !important;
+    padding: 10px 0 10px 0 !important;
+    background-color: #5f84f3 !important;
+}
+
+.mb-7 {
+    margin-bottom: 7px !important;
+}
+
+.mt-5 {
+    margin-top: 5px !important;
+}
+
+.mymodal {
+    height: 800px !important;
+    top: 200px !important;
+    font-size: 20px !important;
+}
+
+.mb-5 {
+    margin-bottom: 0px !important;
+}
+
+.w-big {
+    width: 200px !important;
+}
+
+.bwhite-lg {
+    background-color: transparent !important;
+}
+
+.bwhite-sm {
+    background-color: transparent !important;
+    width: 10px !important;
+}
+
+.comment-box {
+    display: none;
+}
+
+    .name-comp {
+      color: white;
+    }
+
+    .home-btn {
+      color: white;
+    }
+
+    .your-name {
+      color: white;
+    }
+
+    .logout {
+      color: white;
+    }
+
+
+
+
+
+
+    .header {
+          background-color: #7C83FD;
+          padding-bottom:30px;
+      }
+
+      ul {
+          padding-top: 20px;
+          text-align:center;
+        list-style: none;
+
+      }
+
+      li {
+          display:inline-block;
+          font-family: 'Fira Sans', sans-serif;
+          text-decoration: none;
+
+          color: #f6f6f6;
+          padding-right: 20px;
+      }
+      ul li a {
+          text-decoration: none;
+          color: #f6f6f6;
+      }
+
+      .logo {
+          float: left;
+          margin-left: 5px;
+          margin-top: 5px;
+      }
+
+      .user-nav {
+          float: ;
+          padding-right: 5px;
+      }
+
+      .user-nav a{
+          text-decoration: none;
+          color: #f6f6f6;
+      }
+
+
+
+      .username-nav {
+          float: left;
+      }
+
+      .avatar-nav {
+          float: left;
+      }
+
+      .form-post {
+          background-color: #f8f8f8;
+          padding:10px;
+          margin: 20px;
+          border-radius: 30px;
+      }
+
+      .logout-button {
+          background-color: #A239EA;
+          border-radius: 8px;
+
+          padding:10px;
+      }
+
+      .photo-first-page {
+          float: left;
+      }
+
+      .first {
+          padding-bottom: 260px;
+
+      }
+
+      .first-text {
+
+          text-decoration: none;
+          font-size: 60px;
+          padding-top: 50px;
+
+      }
+
+      .word-1 {
+          color: #7C83FD;
+
+      }
+
+      .second-text-block {
+          padding-bottom: 200px;
+
+      }
+
+      .second-text {
+          font-size: 40px;
+      }
+
+      .photo-second-page {
+          float: right;
+
+      }
+
+      .photo-second2-page {
+          float: right;
+          margin-bottom: 100px;
+      }
+
+      .second-text-block {
+          float: left;
+          font-size: 45px;
+          color: #333333;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+        hr {
+            color: #7C83FD;
+            width: 400px;
+            height: 5px;
+        }
+
+        .third {
+
+            margin-bottom: 80px;
+        }
+
+        .photo-first-page {
+            padding-right: 40px;
+        }
+
+        .third-text {
+            font-size: 45px;
+        }
+
+        .konkurs {
+            background-color: #de1270;
+            padding: 10px;
+            border-radius: 10px;
+            float: left;
+            color: #F8F8F8;
+            margin: 40px;
+            box-shadow:0 0 40px #e346bc;
+        }
+
+        .f-block-info {
+            font-size: 30px;
+        }
+
+
+        footer {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            background-color: #7C83FD;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .foot-el {
+            font-family: 'Montserrat', sans-serif;
+            float: left;
+           color: #F8F8F8;
+            padding-left: 30px;
+        }
+
+        .foot-logo {
+            float: right;
+            margin-bottom: 80px;
+        }
+
+
+  </style>
+      <link rel="stylesheet" href="../../../Мебель-Паша/style.css">
+
+      <!--
+
+        .header {
+            background-color: #7C83FD;
+            padding-bottom:30px;
+        }
+
+        ul {
+            padding-top: 20px;
+            text-align:center;
+          list-style: none;
+
+        }
+
+        li {
+            display:inline-block;
+            font-family: 'Fira Sans', sans-serif;
+            text-decoration: none;
+
+            color: #f6f6f6;
+            padding-right: 20px;
+        }
+        ul li a {
+            text-decoration: none;
+            color: #f6f6f6;
+        }
+
+        .logo {
+            float: left;
+            margin-left: 5px;
+            margin-top: 5px;
+        }
+
+        .user-nav {
+            float: ;
+            padding-right: 5px;
+        }
+
+        .user-nav a{
+            text-decoration: none;
+            color: #f6f6f6;
+        }
+
+        .logout-button {
+            background-color: #b758fb;
+            border-radius: 30px;
+
+            padding:5px;
+        }
+
+        .username-nav {
+            float: left;
+        }
+
+        .avatar-nav {
+            float: left;
+        }
+
+        .form-post {
+            background-color: #f8f8f8;
+            padding:10px;
+            margin: 20px;
+            border-radius: 30px;
+        }
+
+        .send-button {
+            background-color: #b758fb;
+            border-radius: 30px;
+
+        }
+
+
+      -->
+
+      <!--
+
+-->
+
+
+  </head>
+  <body>
+
+   {% include 'main/navbar.html' %}
+    <div class="ui container">
+      {% block content %}
+      {% endblock content %}
+    </div>
+
+    {% block scripts %}
+    {% endblock scripts %}
+
+   <!--Custom js ADD-->
+   <script type="text/javascript" src={% static 'main.js' %}></script>
+
+  </body>
+</html>
