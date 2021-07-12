@@ -8,8 +8,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-# Create your views here.
-
 @login_required
 def my_profile_view(request):
     profile = Profile.objects.get(user=request.user)
@@ -30,8 +28,7 @@ def my_profile_view(request):
     return render(request, 'profiles/myprofile.html', context)
 
 
-
-
+# Invites
 @login_required
 def invites_received_view(request):
     profile = Profile.objects.get(user=request.user)

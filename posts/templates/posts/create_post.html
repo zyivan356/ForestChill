@@ -1,26 +1,19 @@
 {% extends 'base.html' %}
 
-{% block title %}
-create post
-{% endblock title %}
+{% block title %}create post{% endblock title %}
 
 {% block content %}
-
-<div class="form-post">
-<form action="" method="POST" class='ui form' enctype="multipart/form-data">
-    {% csrf_token %}
-    <h2>{{form.content}}</h2>
-    {{form.image}}
-    {{p_form}}
-    <button type='submit' name="submit_p_form" class="ui positive button w-full mt-5" align="center">Send</button>
-    
-    {% if post_added %}
-        <div class="ui green message">Post added</div>
-    {% endif %}
-</form>
-</div>
-
-
-
+    <div class="form-post">
+        <form action="" method="POST" class='ui form' enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>{{form.content}}</h2>
+            {{form.image}}
+            {{p_form}}
+            <button type='submit' name="submit_p_form" class="ui positive button w-full mt-5" align="center">Send</button>
+            {% if post_added %}
+                <div class="ui green message">Post added</div>
+            {% endif %}
+        </form>
+    </div>
 {% endblock content %}
 

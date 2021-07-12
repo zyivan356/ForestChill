@@ -1,7 +1,7 @@
 from django import forms
 from .models import Profile
 
-# update
+# Update profile info
 
 
 class ProfileModelForm(forms.ModelForm):

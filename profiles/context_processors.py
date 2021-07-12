@@ -1,6 +1,7 @@
 from .models import Profile, Relationship
 
 
+# User avatar in navbar
 def profile_pic(request):
     if request.user.is_authenticated:
         profile_obj = Profile.objects.get(user=request.user)
@@ -9,6 +10,7 @@ def profile_pic(request):
     return {}
 
 
+# Invites, when user is authenticate
 def invatations_received_no(request):
     if request.user.is_authenticated:
         profile_obj = Profile.objects.get(user=request.user)

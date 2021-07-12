@@ -11,6 +11,7 @@ def post_save_create_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
 
+# Add friend
 @receiver(post_save, sender=Relationship)
 def post_save_add_to_friends(sender, instance, created, **kwargs):
     sender = instance.sender
@@ -22,6 +23,7 @@ def post_save_add_to_friends(sender, instance, created, **kwargs):
         receiver.save()
 
 
+# Delete from friends
 @receiver(pre_delete, sender=Relationship)
 def pre_delete_remove_friends(sender, instance, **kwargs):
     sender = instance.sender

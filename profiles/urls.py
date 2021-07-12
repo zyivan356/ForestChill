@@ -4,7 +4,6 @@ from .views import (
     invites_received_view,
     invite_profiles_list_view,
     Profiles_list_view,
-    #ProfilelistView,
     ProfileDetailView,
     send_invatation,
     remove_from_friends,

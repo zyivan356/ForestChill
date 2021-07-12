@@ -1,11 +1,8 @@
 {% extends 'base.html' %}
 
-{% block title %}
-delete post
-{% endblock title %}
+{% block title %}delete post{% endblock title %}
 
 {% block content %}
-
     {% if messages %}
         {% for message in messages %}
             {% if 'warning' in message.tags %}

@@ -1,38 +1,34 @@
 {% extends 'base.html' %}
 
-{% block title %}
-my profile
-{% endblock title %}
+{% block title %}my profile{% endblock title %}
 
 {% block content %}
 
 <!-- MODAL -->
 <div class="ui modal mymodal">
-  <i class="close icon"></i>
-  <div class="header">
-    Update your Profile
-  </div>
-  <div class="image content">
-    <div class="ui medium image">
-      <img src="{{profile.avatar.url}}">
+    <i class="close icon"></i>
+    <div class="header">
+        Update your Profile
     </div>
-    <div class="description">
-      <div class="ui header">Provide some additional/newest info about you </div>
-     <form action="" method="POST" class="ui form" enctype='multipart/form-data'>
-        {% csrf_token %}
-        {{form.as_p}}
+    <div class="image content">
+        <div class="ui medium image">
+            <img src="{{profile.avatar.url}}">
+        </div>
+        <div class="description">
+            <div class="ui header">Provide some additional/newest info about you </div>
+        <form action="" method="POST" class="ui form" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {{form.as_p}}
+        </div>
     </div>
-  </div>
-  <div class="actions">
-    <button type='submit' class="ui positive right labeled icon button">
-      Update
-      <i class="checkmark icon"></i>
-    </button>
     </form>
-  </div>
+        <div class="actions">
+        <button type='submit' class="ui positive right labeled icon button">
+            Update
+                <i class="checkmark icon"></i>
+        </button>
+    </div>
 </div>
-
-
 
 <div class="">
     {% if confirm %}
@@ -94,27 +90,11 @@ my profile
                             <td>number of likes received</td>
                             <td>{{profile.get_likes_recieved_no}}</td>
                         </tr>
-
-
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 {% endblock content %}

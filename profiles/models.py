@@ -23,6 +23,7 @@ class ProfileManager(models.Manager):
         print(accepted)
         print("========================")
 
+        # List comprehention
         available = [profile for profile in profiles if profile not in accepted]
         print(available)
         print("========================")
@@ -67,6 +68,7 @@ class Profile(models.Model):
     def get_all_authors_posts(self):
         return self.posts.all()
 
+    # Likes / logic
     def get_likes_given_no(self):
         likes = self.like_set.all()
         total_liked = 0
@@ -77,11 +79,13 @@ class Profile(models.Model):
 
     def get_likes_recieved_no(self):
         posts = self.posts.all()
+        # Default
         total_liked = 0
         for item in posts:
             total_liked += item.liked.all().count()
         return total_liked
 
+        # Init f/l name
     __initial_first_name = None
     __initial_last_name = None
 
@@ -90,7 +94,7 @@ class Profile(models.Model):
         self.__initial_first_name = self.first_name
         self.__initial_last_name = self.last_name
 
-
+    # Save and make the Slug for DetailView (127.0.0.1:8000/profiles/<slug>)
     def save(self, *args, **kwargs):
         ex = False
         to_slug = self.slug
@@ -99,12 +103,15 @@ class Profile(models.Model):
                 to_slug = slugify(str(self.first_name) + " " + str(self.last_name))
                 ex = Profile.objects.filter(slug=to_slug).exists()
                 while ex:
+                    # That is when username == username.another
                     to_slug = slugify(to_slug + " " + str(get_random_code()))
                     ex = Profile.objects.filter(slug=to_slug).exists()
             else:
                 to_slug = str(self.user)
         self.slug = to_slug
         super().save(*args, **kwargs)
+
+# Constanta for send / accepted
 
 
 STATUS_CHOICES = (
@@ -115,6 +122,7 @@ STATUS_CHOICES = (
 
 class RelationshipManager(models.Manager):
 
+    # Filter for invatations
     def invatations_received(self, receiver):
         qs = Relationship.objects.filter(receiver=receiver, status='send')
         return qs

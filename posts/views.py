@@ -5,15 +5,14 @@ from profiles.models import Profile
 from .forms import PostModelForm, CommentModelForm
 from django.views.generic import UpdateView, DeleteView
 from django.contrib import messages
-from django.http import JsonResponse
+# from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-# Create your views here.
-
 @login_required
 def create_post(request):
+
     qs = Post.objects.all()
     profile = Profile.objects.get(user=request.user)
 
@@ -24,6 +23,7 @@ def create_post(request):
 
     profile = Profile.objects.get(user=request.user)
 
+    # Post
     if 'submit_p_form' in request.POST:
         print(request.POST)
         p_form = PostModelForm(request.POST, request.FILES)
@@ -34,6 +34,7 @@ def create_post(request):
             p_form = PostModelForm()
             post_added = True
 
+    # Comment
     if 'submit_c_form' in request.POST:
         c_form = CommentModelForm(request.POST)
         if c_form.is_valid():
@@ -43,6 +44,7 @@ def create_post(request):
             instance.save()
             c_form = CommentModelForm()
 
+    # dict for post
     context = {
         'qs': qs,
         'profile': profile,
@@ -52,8 +54,11 @@ def create_post(request):
     }
     return render(request, 'posts/create_post.html', context)
 
+
+# Comments for post
 @login_required
 def post_comment_create_and_list_view(request):
+
     qs = Post.objects.all()
     profile = Profile.objects.get(user=request.user)
 
@@ -94,6 +99,7 @@ def post_comment_create_and_list_view(request):
     return render(request, 'posts/main.html', context)
 
 
+# Like / unlike view
 @login_required
 def like_unlike_post(request):
     user = request.user
@@ -102,6 +108,7 @@ def like_unlike_post(request):
         post_obj = Post.objects.get(id=post_id)
         profile = Profile.objects.get(user=user)
 
+        #
         if profile in post_obj.liked.all():
             post_obj.liked.remove(profile)
         else:
@@ -109,6 +116,7 @@ def like_unlike_post(request):
 
         like, created = Like.objects.get_or_create(user=profile, post_id=post_id)
 
+        # Logic for likes/inlikes
         if not created:
             if like.value == 'Like':
                 like.value = 'Unlike'
@@ -124,17 +132,20 @@ def like_unlike_post(request):
         #     'value': like.value,
         #     'likes': post_obj.liked.all().count()
         # }
-
         # return JsonResponse(data, safe=False)
+
     return redirect('posts:main-post-view')
 
 
+# Delete Post
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'posts/confirm_del.html'
     success_url = reverse_lazy('posts:main-post-view')
 
+    # redirect --> *
     # success_url = '/posts/'
+
 
     def get_object(self, *args, **kwargs):
         pk = self.kwargs.get('pk')
@@ -144,12 +155,15 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
         return obj
 
 
+# Update Post
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     form_class = PostModelForm
     model = Post
     template_name = 'posts/update.html'
+    # Redirect
     success_url = reverse_lazy('posts:main-post-view')
 
+    # Its like PostDelete
     def form_valid(self, form):
         profile = Profile.objects.get(user=self.request.user)
         if form.instance.author == profile:

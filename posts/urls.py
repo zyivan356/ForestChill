@@ -1,5 +1,11 @@
 from django.urls import path
-from .views import post_comment_create_and_list_view, like_unlike_post, PostDeleteView, PostUpdateView, create_post
+from .views import (
+    post_comment_create_and_list_view,
+    like_unlike_post,
+    PostDeleteView,
+    PostUpdateView,
+    create_post,
+)
 
 
 app_name = 'posts'
